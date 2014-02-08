@@ -48,20 +48,20 @@ set nobackup
 set noswapfile
 
 " 突出显示当前行等 不喜欢这种定位可注解
-set cursorcolumn
-set cursorline              " 突出显示当前行
+"set cursorcolumn
+"set cursorline              " 突出显示当前行
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 "好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti= t_te=
+"set t_ti= t_te=
 
 
 "- 则点击光标不会换,用于复制
-set mouse-=a           " 鼠标暂不启用, 键盘党....
+"set mouse-=a           " 鼠标暂不启用, 键盘党....
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
-set selection=inclusive
-set selectmode=mouse,key
+"set selection=inclusive
+"set selectmode=mouse,key
 
 " No annoying sound on errors
 " 去掉输入错误的提示声音
@@ -88,11 +88,11 @@ set mat=2
 " 高亮search命中的文本。
 set hlsearch
 " 搜索时忽略大小写
-set ignorecase
+"set ignorecase
 " 随着键入即时搜索
-set incsearch
+"set incsearch
 " 有一个或以上大写字母时仍大小写敏感
-set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
+"set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 
 " 代码折叠
 set foldenable
@@ -126,21 +126,21 @@ set wildmode=list:longest
 set ttyfast
 
 
-"行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
-" 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+""行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
+"" 插入模式下用绝对行号, 普通模式下用相对
+"autocmd InsertEnter * :set norelativenumber number
+"autocmd InsertLeave * :set relativenumber
+"function! NumberToggle()
+"  if(&relativenumber == 1)
+"    set norelativenumber number
+"  else
+"    set relativenumber
+"  endif
+"endfunc
+"nnoremap <C-n> :call NumberToggle()<cr>
 
 "create undo file
 set undolevels=1000         " How many undos
@@ -160,7 +160,7 @@ set showcmd
 set showmode
 
 " Set 7 lines to the cursor - when moving vertically using j/k 上下滚动,始终在中间
-set scrolloff=7
+"set scrolloff=7
 
 "set winwidth=79
 
@@ -196,7 +196,7 @@ set formatoptions+=B
 "==========================================
 " others 其它配置
 "==========================================
-autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
+"autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
 autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
 
 " 自动补全配置
@@ -207,13 +207,13 @@ set completeopt=longest,menu
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 "上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " 增强模式中的命令行自动完成操作
 set wildmenu
@@ -224,9 +224,9 @@ set wildignore=*.o,*~,*.pyc,*.class
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 
 " if this not work ,make sure .viminfo is writable for you
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+"if has("autocmd")
+"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"endif
 
 "删除多余空格
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
@@ -258,10 +258,10 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+"map <Left> <Nop>
+"map <Right> <Nop>
+"map <Up> <Nop>
+"map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
@@ -269,10 +269,10 @@ map j gj
 map k gk
 
 " better command line editing
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+"cnoremap <C-j> <t_kd>
+"cnoremap <C-k> <t_ku>
+"cnoremap <C-a> <Home>
+"cnoremap <C-e> <End>
 
 "Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
@@ -281,79 +281,79 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Go to home and end using capitalized directions
-noremap H 0
-noremap L $
+"noremap H 0
+"noremap L $
 
 " Remap VIM 0 to first non-blank character
-map 0 ^
+"map 0 ^
 
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
 
 ""为方便复制，用<F2>开启/关闭行号显示:
-function! HideNumber()
-  if(&relativenumber == &number)
-    set relativenumber! number!
-  elseif(&number)
-    set number!
-  else
-    set relativenumber!
-  endif
-  set number?
-endfunc
-nnoremap <F2> :call HideNumber()<CR>
-nnoremap <F3> :set list! list?<CR>
-nnoremap <F4> :set wrap! wrap?<CR>
-              "set paste
-set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
+"function! HideNumber()
+"  if(&relativenumber == &number)
+"    set relativenumber! number!
+"  elseif(&number)
+"    set number!
+"  else
+"    set relativenumber!
+"  endif
+"  set number?
+"endfunc
+"nnoremap <F2> :call HideNumber()<CR>
+"nnoremap <F3> :set list! list?<CR>
+"nnoremap <F4> :set wrap! wrap?<CR>
+"              "set paste
+"set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
+"                                "    paste mode, where you can paste mass data
+"                                "    that won't be autoindented
 
 " disbale paste mode when leaving insert mode
-au InsertLeave * set nopaste
+"au InsertLeave * set nopaste
 
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+"map <space> /
 "map <c-space> ?"
 
-map Y y$
+"map Y y$
 "cmap w!! %!sudo tee > /dev/null %
 " w!! to sudo & write a file
-cmap w!! w !sudo tee >/dev/null %
-noremap <silent><leader>/ :nohls<CR>
+"cmap w!! w !sudo tee >/dev/null %
+"noremap <silent><leader>/ :nohls<CR>
 
-inoremap kj <Esc>
+"inoremap kj <Esc>
 " I can type :help on my own, thanks.
-noremap <F1> <Esc>"
+"noremap <F1> <Esc>"
 
 " ; can repeat fx/tx. so do not map it
 "nnoremap ; :
 
-nnoremap <leader>v V`}
+"nnoremap <leader>v V`}
 
 "Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 "Keep search pattern at the center of the screen."
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
+"nnoremap <silent> n nzz
+"nnoremap <silent> N Nzz
+"nnoremap <silent> * *zz
+"nnoremap <silent> # #zz
+"nnoremap <silent> g* g*zz
 
-"Use arrow key to change buffer"
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+"Use arrow key to change buffer" 可能有用哦！
+"noremap <left> :bp<CR>
+"noremap <right> :bn<CR>
 
 ""Jump to start and end of line using the home row keys
 ""
-nmap t o<ESC>k
-nmap T O<ESC>j
+"nmap t o<ESC>k
+"nmap T O<ESC>j
 
 " ctrl +jk to move lines   经常敲错换错行...一直没想好配哪个映射
 "noremap <C-k> :m+<CR>
@@ -362,13 +362,13 @@ nmap T O<ESC>j
 "inoremap <C-k> <Esc>:m-2<CR>
 
 " Quickly close the current window
-nnoremap <leader>q :q<CR>
+"nnoremap <leader>q :q<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
-nnoremap ' `
-nnoremap ` '
+"nnoremap ' `
+"nnoremap ` '
 
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
@@ -376,12 +376,12 @@ nnoremap ` '
 "vnoremap <silent> <leader>d "_d
 
 " remap U to <C-r> for easier redo
-nnoremap U <C-r>
+"nnoremap U <C-r>
 
 "au VimResized * exe "normal! \<c-w>=""
 
 " select all
-map <Leader>sa ggVG"
+"map <Leader>sa ggVG"
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
@@ -391,16 +391,16 @@ au BufWritePost .vimrc so ~/.vimrc
 "" " Close all the buffers
 "map <leader>ba :1,1000 bd!<cr>
 
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+"map <leader>tn :tabnew<cr>
+"map <leader>to :tabonly<cr>
+"map <leader>tc :tabclose<cr>
+"map <leader>tm :tabmove
 
 " tabnext  tabpreviouse
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+"map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 "==========================================
 " bundle 插件管理和配置项
@@ -451,12 +451,12 @@ noremap <leader>bn :MBEbn<CR>
 noremap <leader>bp :MBEbp<CR>
 noremap <leader>bd :MBEbd<CR>
 
-"标签导航
+""标签导航
 Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-
-"标签导航 要装ctags
+"
+""标签导航 要装ctags
 Bundle 'vim-scripts/taglist.vim'
 set tags=tags;/
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
@@ -502,6 +502,10 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 
+"============"
+" colortheme "
+"============"
+
 "################### 显示增强 ###################"
 
 "状态栏增强展示
@@ -545,39 +549,36 @@ Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
 
 
+
 "主题 solarized
 Bundle 'altercation/vim-colors-solarized'
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
-"主题 molokai
-Bundle 'tomasr/molokai'
-"let g:molokai_original = 1
-
 "################### 快速移动 ###################"
 
 "更高效的移动 ,, + w/fx
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 
-Bundle 'vim-scripts/matchit.zip'
+"Bundle 'vim-scripts/matchit.zip'
 
 "################### 补全及快速编辑 ###################"
 
-"迄今为止用到的最好的自动VIM自动补全插件
-Bundle 'Valloric/YouCompleteMe'
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-"在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
+""迄今为止用到的最好的自动VIM自动补全插件
+"Bundle 'Valloric/YouCompleteMe'
+""youcompleteme  默认tab  s-tab 和自动补全冲突
+""let g:ycm_key_list_select_completion=['<c-n>']
+"let g:ycm_key_list_select_completion = ['<Down>']
+""let g:ycm_key_list_previous_completion=['<c-p>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
+""在注释输入中也能补全
+""let g:ycm_complete_in_comments = 1
+""在字符串输入中也能补全
+"let g:ycm_complete_in_strings = 1
+""注释和字符串中的文字也会被收入补全
+"let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
 
 "快速插入代码片段
@@ -617,14 +618,14 @@ Bundle 'terryma/vim-expand-region'
 map = <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
-"for mutil cursor
-Bundle 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=0
-" Default mapping
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+""for mutil cursor
+"Bundle 'terryma/vim-multiple-cursors'
+"let g:multi_cursor_use_default_mapping=0
+"" Default mapping
+"let g:multi_cursor_next_key='<C-m>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
 
 
 "################# 语法检查 ###############
@@ -700,31 +701,34 @@ syntax enable
 syntax on
 
 " Set extra options when running in GUI mode
-if has("gui_running")
-    set guifont=Monaco:h14
-    set guioptions-=T
-    set guioptions+=e
-    set guioptions-=r
-    set guioptions-=L
-    set guitablabel=%M\ %t
-    set showtabline=1
-    set linespace=2
-    set noimd
-    set t_Co=256
-endif
+"if has("gui_running")
+"    set guifont=Monaco:h14
+"    set guioptions-=T
+"    set guioptions+=e
+"    set guioptions-=r
+"    set guioptions-=L
+"    set guitablabel=%M\ %t
+"    set showtabline=1
+"    set linespace=2
+"    set noimd
+"    set t_Co=256
+"endif
 
 " 修改主题和颜色展示
-colorscheme solarized
-set background=dark
-set t_Co=256
+"colorscheme solarized
+"set background=dark
+"set t_Co=256
 
 "colorscheme molokai
 "colorscheme desert
 
+colorscheme wombat256mod
+set t_Co=256
+
 "设置标记一列的背景颜色和数字一行颜色一致
-hi! link SignColumn   LineNr
-hi! link ShowMarksHLl DiffAdd
-hi! link ShowMarksHLu DiffChange
+"hi! link SignColumn   LineNr
+"hi! link ShowMarksHLl DiffAdd
+"hi! link ShowMarksHLu DiffChange
 
 "" for error highlight，防止错误整行标红导致看不清
 highlight clear SpellBad
@@ -761,5 +765,5 @@ function! AutoSetFileHead()
 endfunc
 
 
-" F10 to run python script
-nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
+" F5 to run python script
+nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
