@@ -313,7 +313,7 @@ nnoremap <C-y> 2<C-y>
 " disbale paste mode when leaving insert mode
 "au InsertLeave * set nopaste
 
-nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+"nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
@@ -453,7 +453,7 @@ noremap <leader>bd :MBEbd<CR>
 
 ""标签导航
 Bundle 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
+nmap <F2> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 "
 ""标签导航 要装ctags
@@ -567,19 +567,21 @@ let g:solarized_visibility="normal"
 "################### 补全及快速编辑 ###################"
 
 ""迄今为止用到的最好的自动VIM自动补全插件
-"Bundle 'Valloric/YouCompleteMe'
-""youcompleteme  默认tab  s-tab 和自动补全冲突
-""let g:ycm_key_list_select_completion=['<c-n>']
-"let g:ycm_key_list_select_completion = ['<Down>']
-""let g:ycm_key_list_previous_completion=['<c-p>']
-"let g:ycm_key_list_previous_completion = ['<Up>']
-""在注释输入中也能补全
-""let g:ycm_complete_in_comments = 1
-""在字符串输入中也能补全
-"let g:ycm_complete_in_strings = 1
-""注释和字符串中的文字也会被收入补全
+Bundle 'Valloric/YouCompleteMe'
+"youcompleteme  默认tab  s-tab 和自动补全冲突
+"let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_previous_completion=['<c-p>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+"在注释输入中也能补全
+"let g:ycm_complete_in_comments = 1
+"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+"注释和字符串中的文字也会被收入补全
 "let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
+" C 语言, GCC
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 "快速插入代码片段
 Bundle 'SirVer/ultisnips'
@@ -589,7 +591,7 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 
 "快速 加减注释
-Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdcommenter'
 
 " 快速加入修改环绕字符
 Bundle 'tpope/vim-surround'
@@ -653,8 +655,8 @@ Bundle 'hdima/python-syntax'
 let python_highlight_all = 1
 
 " for golang
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'Blackrush/vim-gocode'
+"Bundle 'jnwhiteh/vim-golang'
+"Bundle 'Blackrush/vim-gocode'
 
 " for markdown
 Bundle 'plasticboy/vim-markdown'
@@ -670,10 +672,10 @@ let g:html_indent_style1 = "inc"
 Bundle 'nono/jquery.vim'
 
 "for jinja2 highlight
-Bundle 'Glench/Vim-Jinja2-Syntax'
+"Bundle 'Glench/Vim-Jinja2-Syntax'
 
 "for nginx conf file highlight.   need to confirm it works
-Bundle 'thiderman/nginx-vim-syntax'
+"Bundle 'thiderman/nginx-vim-syntax'
 
 "################### 其他 ###################"
 " task list
@@ -767,3 +769,10 @@ endfunc
 
 " F5 to run python script
 nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+
+" F3 to compile a C program
+map <F3> :w <CR> :!g++ % -o %< <CR>
+
+
+" F4 to compile and run a C program
+map <F4> :w <CR> :!g++ % -o %< && ./%< <CR>
