@@ -82,18 +82,6 @@ if v:version >= 730
 endif
 
 set wildignore=*.swp,*.bak,*.pyc,*.class
-" 突出显示当前行等
-set cursorcolumn
-set cursorline          " 突出显示当前行
-
-
-"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
-"好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti= t_te=
-
-
-"- 则点击光标不会换,用于复制
-set mouse-=a             " 鼠标暂不启用, 键盘党....
 
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
@@ -130,7 +118,7 @@ set showcmd
 set showmode
 
 " Set 7 lines to the cursor - when moving vertically using j/k 上下滚动,始终在中间
-set scrolloff=7
+"set scrolloff=10
 
 " set winwidth=79
 
@@ -142,7 +130,7 @@ set laststatus=2
 "显示行号：
 set number
 " 取消换行。
-set nowrap
+"set nowrap
 
 "括号配对情况
 set showmatch
@@ -157,7 +145,7 @@ set ignorecase
 " 随着键入即时搜索
 set incsearch
 " 有一个或以上大写字母时仍大小写敏感
-set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
+"set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 
 " 代码折叠
 set foldenable
@@ -267,12 +255,6 @@ endif
 
 " 主要按键重定义
 
-" 关闭方向键, 强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
-
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
 map j gj
@@ -280,49 +262,12 @@ map k gk
 
 " F1 - F6 设置
 " F1 废弃这个键,防止调出系统帮助
-" F2 行号开关，用于鼠标复制代码用
-" F3 显示可打印字符开关
-" F4 换行开关
-" F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
-" F6 语法开关，关闭语法可以加快大文件的展示
-
-" I can type :help on my own, thanks.  Protect your fat fingers from the evils of <F1>
-noremap <F1> <Esc>"
-
-""为方便复制，用<F2>开启/关闭行号显示:
-function! HideNumber()
-  if(&relativenumber == &number)
-    set relativenumber! number!
-  elseif(&number)
-    set number!
-  else
-    set relativenumber!
-  endif
-  set number?
-endfunc
-nnoremap <F2> :call HideNumber()<CR>
-nnoremap <F3> :set list! list?<CR>
-nnoremap <F4> :set wrap! wrap?<CR>
-              "set paste
-set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
-
-" disbale paste mode when leaving insert mode
-au InsertLeave * set nopaste
-
-nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
-
 
 "Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Go to home and end using capitalized directions
-noremap H ^
-noremap L $
 
 
 "Map ; to : and save a million keystrokes
@@ -339,10 +284,10 @@ cnoremap <C-e> <End>
 " 搜索相关
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+"map <space> /
 " 进入搜索Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
@@ -360,60 +305,16 @@ noremap <silent><leader>/ :nohls<CR>
 noremap <left> :bp<CR>
 noremap <right> :bn<CR>
 
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+"map <leader>tn :tabnew<cr>
+"map <leader>to :tabonly<cr>
+"map <leader>tc :tabclose<cr>
+"map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+"map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " ------- 选中及操作改键
-
-"Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
-vnoremap < <gv
-vnoremap > >gv
-
-" y$ -> Y Make Y behave like other capitals
-map Y y$
-
-" select all
-map <Leader>sa ggVG"
-
-" select block
-nnoremap <leader>v V`}
-
-" w!! to sudo & write a file
-cmap w!! w !sudo tee >/dev/null %
-
-" kj 替换 Esc
-inoremap kj <Esc>
-
-" 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
-
-
-"Jump to start and end of line using the home row keys
-nmap t o<ESC>k
-nmap T O<ESC>j
-
-" Quickly close the current window
-nnoremap <leader>q :q<CR>
-
-" Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and
-" column, so swap them
-nnoremap ' `
-nnoremap ` '
-
-" remap U to <C-r> for easier redo
-nnoremap U <C-r>
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "==========================================
 " FileType Settings  文件类型设置
@@ -431,27 +332,8 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
-" 定义函数AutoSetFileHead，自动插入文件头
-autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
-function! AutoSetFileHead()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
-    endif
-
-    "如果文件类型为python
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# encoding: utf-8")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-
-" F10 to run python script
-nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
+" F5 to run python script
+nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 
 "==========================================
 " Theme Settings  主题设置
@@ -472,12 +354,15 @@ if has("gui_running")
 endif
 
 " theme主题
-set background=dark
-colorscheme solarized
-set t_Co=256
+"set background=dark
+"colorscheme solarized
+"set t_Co=256
 
 "colorscheme molokai
 "colorscheme desert
+
+colorscheme wombat256mod
+set t_Co=256
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
