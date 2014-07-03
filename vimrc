@@ -24,8 +24,8 @@
 "==========================================
 
 " 修改leader键
-let mapleader = ','
-let g:mapleader = ','
+"let mapleader = ','
+"let g:mapleader = ','
 
 " 开启语法高亮
 syntax enable
@@ -272,7 +272,6 @@ map <C-l> <C-W>l
 
 "Map ; to : and save a million keystrokes
 " ex mode commands made easy 用于快速进入命令行
-nnoremap ; :
 
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
@@ -379,3 +378,4 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+map <F4> :w <CR> :!clear && g++ % -o %< && ./%< <CR>
